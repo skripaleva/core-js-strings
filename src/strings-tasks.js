@@ -256,8 +256,8 @@ function formatTime(minutes, seconds) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -308,8 +308,15 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  let res = 0;
+  const vowels = 'aeiouyAEIOUY';
+  for (let i = 0; i < str.length; i += 1) {
+    if (Array.from(vowels).includes(str[i])) {
+      res += 1;
+    }
+  }
+  return res;
 }
 
 /**
@@ -317,7 +324,7 @@ function countVowels(/* str */) {
  * https://en.wikipedia.org/wiki/Palindrome
  *
  * @param {string} str - The input string.
- * @return {bool} - True if the string is a palindrome, false otherwise.
+ * @return {boolean} - True if the string is a palindrome, false otherwise.
  *
  * @example:
  *   isPalindrome('madam') => true
@@ -325,8 +332,19 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const newStr = str
+    .replace(/[^\w]|_/g, '')
+    .split(', ')
+    .map((char) => char.toUpperCase())
+    .join('');
+  const reverse = str
+    .replace(/[^\w]|_/g, '')
+    .split('')
+    .reverse()
+    .map((char) => char.toUpperCase())
+    .join('');
+  return reverse === newStr;
 }
 
 /**
@@ -334,29 +352,39 @@ function isPalindrome(/* str */) {
  * the function returns the first one encountered.
  *
  * @param {string} sentence - The input sentence.
- * @returns {string} - The longest word in the sentence.
+ * @returns {string[]} - The longest word in the sentence.
  *
  * @example:
  *   findLongestWord('The quick brown fox') => 'quick'
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const sortArr = sentence.split(' ').sort((a, b) => {
+    return b.length - a.length;
+  });
+  return sortArr[0];
 }
 
 /**
  * Returns the string where each word is reversed.
  *
  * @param {string} str - The input string.
- * @return {string} - The string where each word is reversed.
+ * @return {void} - The string where each word is reversed.
  *
  * @example:
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  // if (!str) {
+  //   console.log('test')
+  //   return '';
+  // }
+  return str
+    .split(' ')
+    .map((word) => word.split('').reverse().join(''))
+    .join(' ');
 }
 
 /**
